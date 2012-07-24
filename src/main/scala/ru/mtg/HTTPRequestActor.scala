@@ -1,12 +1,11 @@
 package ru.mtg
 
-import akka.actor.Actor
+import akka.actor.{ActorLogging, Actor}
 import org.apache.commons.io.IOUtils
 import java.net.URI
 import akka.event.Logging
 
-class HTTPRequestActor extends Actor {
-  val log = Logging(context.system, this)
+class HTTPRequestActor extends Actor with ActorLogging {
 
   override def preStart() = {
     log.debug("Starting")

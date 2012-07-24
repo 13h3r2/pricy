@@ -29,7 +29,7 @@
         <repository>
             <id>akka.repository</id>
             <name>Akka Maven Repository</name>
-            <url>http://akka.io/repository</url>
+            <url>http://akka.io/repository/release</url>
         </repository>
         <repository>
             <id>typesafe</id>
@@ -54,6 +54,16 @@
             <groupId>commons-io</groupId>
             <artifactId>commons-io</artifactId>
             <version>2.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.scala-lang</groupId>
+            <artifactId>scala-library</artifactId>
+            <version>2.9.2</version>
+        </dependency>
+        <dependency>
+            <groupId>org.scala-lang</groupId>
+            <artifactId>scala-compiler</artifactId>
+            <version>2.9.2</version>
         </dependency>
     </dependencies>
     <build>
@@ -98,6 +108,11 @@
             </plugin>
         </plugins>
         <sourceDirectory>src/main/scala</sourceDirectory>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+            </resource>
+        </resources>
     </build>
 
 </project>
