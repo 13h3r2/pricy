@@ -1,4 +1,4 @@
-package ru.mtg
+package playground
 
 import akka.actor._
 import akka.util.{Duration, Timeout}

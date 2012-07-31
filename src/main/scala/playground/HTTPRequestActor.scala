@@ -1,17 +1,34 @@
-package ru.mtg
+package playground
 
-import akka.actor.{TypedActor, ActorLogging, Actor}
-import org.apache.commons.io.IOUtils
+import akka.actor.{ActorLogging, Actor}
 import java.net.URI
-import akka.event.{LogSource, Logging}
+import org.apache.commons.io.IOUtils
 import akka.dispatch.{Promise, Future}
 import akka.actor.TypedActor.PreStart
+import akka.event.LogSource
 
-case class HTTPRequestResult(url : String, text : String)
+class HTTPRequestActor extends Actor with ActorLogging {
+
+  override def preStart() = {
+    log.debug("Starting")
+  }
+
+  protected def receive = {
+    case url: String => {
+      log.debug("start" + url)
+      val result = IOUtils.toString(new URI(url))
+      log.debug("finished" + url)
+      sender ! new HTTPRequestResult(url, result)
+    }
+  }
+}
+
+case class HTTPRequestResult(url: String, text: String)
 
 trait HTTPClient {
   def fetch(url: String) : Future[HTTPRequestResult]
 }
+
 
 class HTTPClientImpl(val name: String) extends HTTPClient with PreStart with LogSource[HTTPClientImpl] {
   import akka.actor.TypedActor.dispatcher
@@ -30,19 +47,3 @@ class HTTPClientImpl(val name: String) extends HTTPClient with PreStart with Log
   def genString(t: HTTPClientImpl) = this.toString
 }
 
-
-class HTTPRequestActor extends Actor with ActorLogging {
-
-  override def preStart() = {
-    log.debug("Starting")
-  }
-
-  protected def receive = {
-    case url: String => {
-      log.debug("start" + url)
-      val result = IOUtils.toString(new URI(url))
-      log.debug("finished" + url)
-      sender ! new HTTPRequestResult(url, result)
-    }
-  }
-}
