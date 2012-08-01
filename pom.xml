@@ -3,16 +3,16 @@
         xmlns="http://maven.apache.org/POM/4.0.0"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>mtg-pricer</groupId>
+    <groupId>pricy</groupId>
     <version>1.0.0</version>
-    <artifactId>mtg-pricer2</artifactId>
+    <artifactId>pricy</artifactId>
     <packaging>jar</packaging>
 
-    <name>mtg-pricer</name>
+    <name>pricy</name>
     <description/>
     <url/>
     <properties>
-        <scala.version>2.9.2</scala.version>
+        <scala.version>2.9.1-1</scala.version>
     </properties>
 
     <repositories>
@@ -58,18 +58,24 @@
         <dependency>
             <groupId>org.scala-lang</groupId>
             <artifactId>scala-library</artifactId>
-            <version>2.9.2</version>
+            <version>${scala.version}</version>
         </dependency>
         <dependency>
             <groupId>org.scala-lang</groupId>
             <artifactId>scala-compiler</artifactId>
-            <version>2.9.2</version>
+            <version>${scala.version}</version>
         </dependency>
         <dependency>
             <groupId>nu.validator.htmlparser</groupId>
             <artifactId>htmlparser</artifactId>
             <version>1.2.1</version>
         </dependency>
+        <dependency>
+            <groupId>commons-lang</groupId>
+            <artifactId>commons-lang</artifactId>
+            <version>2.3</version>
+        </dependency>
+
     </dependencies>
     <build>
         <plugins>
@@ -104,11 +110,11 @@
                     <scalaVersion>${scala.version}</scalaVersion>
                     <!--<encoding>${project.build.sourceEncoding}</encoding>-->
                     <!--<charset>${project.build.sourceEncoding}</charset>-->
-                    <args>
-                        <arg>-optimise</arg>
-                        <arg>-unchecked</arg>
-                        <arg>-deprecation</arg>
-                    </args>
+                    <!--<args>-->
+                        <!--<arg>-optimise</arg>-->
+                        <!--<arg>-unchecked</arg>-->
+                        <!--<arg>-deprecation</arg>-->
+                    <!--</args>-->
                 </configuration>
             </plugin>
         </plugins>
